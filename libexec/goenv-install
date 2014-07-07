@@ -43,8 +43,12 @@ if [ "$platform" = "darwin" ]; then
   fi
 fi
 
-# URL to download from
-download="https://go.googlecode.com/files/go${version}.${platform}-${arch}${extra}.tar.gz"
+# Since go version 1.2, download binary location has been changed to http://golang.org/
+if [ "$version" = "1.2" -o "$version" \> "1.2" ]; then
+  download="http://golang.org/dl/go${version}.${platform}-${arch}${extra}.tar.gz"
+else
+  download="https://go.googlecode.com/files/go${version}.${platform}-${arch}${extra}.tar.gz"
+fi
 
 # Can't get too clever here
 set +e

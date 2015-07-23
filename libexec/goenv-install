@@ -34,7 +34,7 @@ fi
 
 if [ "$platform" = "darwin" ]; then
   # Since go version 1.2, osx packages were subdivided into 10.6 and 10.8
-  if [ "$version" = "1.2" -o "$version" \> "1.2" ]; then
+  if [ "$version" = "1.2" -o "$version" \> "1.2" -a "$version" \< "1.5" ]; then
     if [ "$(uname -r)" \> "12" ]; then
       extra="-osx10.8"
     else
@@ -49,6 +49,8 @@ if [ "$version" = "1.2" -o "$version" \> "1.2" ]; then
 else
   download="https://go.googlecode.com/files/go${version}.${platform}-${arch}${extra}.tar.gz"
 fi
+
+
 
 # Can't get too clever here
 set +e

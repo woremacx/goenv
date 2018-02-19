@@ -45,7 +45,9 @@ fi
 
 # Since go version 1.2, download binary location has been changed to http://golang.org/
 # has been changed to https://storage.googleapis.com/golang/
-if [ "$version" = "1.2" -o "$version" \> "1.2" ]; then
+# https://qiita.com/akegashi/items/35bde2af80682ca77a70#%E8%BF%BD%E8%A8%982017117
+NUMVERSION=$(echo "$version"|awk -F. '{printf "%d%02d%02d", $1, $2, $3}')
+if [ "$NUMVERSION" -ge 10200 ]; then
   download="https://storage.googleapis.com/golang/go${version}.${platform}-${arch}${extra}.tar.gz"
 else
   download="https://go.googlecode.com/files/go${version}.${platform}-${arch}${extra}.tar.gz"
